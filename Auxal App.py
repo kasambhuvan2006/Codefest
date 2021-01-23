@@ -76,12 +76,32 @@ btn_FAQ_btn = Button(root, image = btn_FAQ)
 def mispage():
       s = Toplevel(height = 1080, width = 1920)
 
-      vbg_image = ImageTk.PhotoImage(Image.open("Verification page1.png"))
+      vbg_image = ImageTk.PhotoImage(Image.open("Verification page.png"))
       vbg = Label(s, image = vbg_image)
       vbg.place(x = 0, y = 0, relwidth=1, relheight=1 )
 
       def Sub():
-            return
+            conn = sqlite3.connect("Information.db")
+            c = conn.cursor()
+
+            r = Title.get()
+
+            y = des.get("1.0","end")
+
+            c.execute("INSERT INTO Misinfo VALUES (:Name, :Des, :YN)",
+            {
+            'Name':Title.get(),
+            'Des':des.get("1.0","end"),
+            'YN':'' })
+            
+
+            
+            
+            conn.commit()
+            conn.close
+
+            
+
       
       Title = Entry(s, width = 40, font = Font_candl2, bg = "#F2EDED")
 
@@ -110,15 +130,15 @@ def mispage():
       sub_btn = Button(s, text = "Submit", font = Font_candl2, command = Sub)
       sub_btn.place(x = 800, y = 700)
 
+      
+def mis():
+      
 
       
 
 
 onl_con = ImageTk.PhotoImage(Image.open("Online consultation.png"))
 onl_con_btn = Button(root, image = onl_con)
-
-
-
 
 my_label = Label(root, image = my_image)
 
@@ -128,6 +148,9 @@ Choose = Label(root, text = "Choose where you want to go next: ", font = Font_ca
 
 mis = ImageTk.PhotoImage(Image.open("Minform.png"))
 mis_btn = Button(root, image = mis, command = mispage )
+
+mis1 = ImageTk.PhotoImage(Image.open("Minform.png"))
+mis_btn1 = Button(root, image = mis1, command = mis1 )
 
 Font_pas = Font(family = "Password", size = 17)
 Font_pas1 = Font(family = "Password", size = 21)
@@ -295,8 +318,22 @@ def homepage():
       Choose.place(x = 400, y = 300)
 
 
-      
+def homepagedoc():
+      Username1.destroy()
+      Username_label.destroy()
+      Username_label.destroy()
+      Password1.destroy()
+      Password1_label.destroy()
+      Login_Btn.destroy()
+      Signup_Btn1.destroy()
+      my_label.destroy()
 
+      my_label1.place(x=0, y=0, relwidth=1, relheight=1)
+
+      mis_btn1.place(x = 500, y = 600)
+
+      
+      
 def Login():
 
 
@@ -320,13 +357,18 @@ def Login():
             if pas == record[2]:
                   print("success")
                   homepage()
-
-                
             else:
                 print("Fail")
                 messagebox.showerror("Error", "Wrong username or  password")
                 break
                 
+
+        elif use == "1234" and pas == "1234":
+              homepagedoc()
+              
+
+                
+            
                         
         else:
             print("Fail")
@@ -354,7 +396,7 @@ Signup_image= ImageTk.PhotoImage(Image.open("2.png"))
 Signup_Btn1 = Button(root, image = Signup_image, command = Signup)
 Signup_Btn1.place(x = 850, y = 700)
 
-####
+
 
 
 
