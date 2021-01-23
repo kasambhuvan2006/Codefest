@@ -6,156 +6,98 @@ import smtplib
 from tkinter import messagebox
 import sqlite3
 
-root = Tk()
-root.title("Auxal")
+
+
+root = Tk() 
+root.title("Log in")
+
 root.geometry("1920x1080")
 
-conn = sqlite3.connect("Signup_details.db")
+
+conn = sqlite3.connect("User_Info.db")
+
+# create cursor
 
 c = conn.cursor()
 
+'''
+c.execute(""" CREATE TABLE Info(
+Name text,
+Username text,
+Password text,
+Email text )""")
+'''
 
-conn.commit()
 
 
-conn.close()
+#close database
 
-Background_image = ImageTk.PhotoImage(Image.open("Signup_Login.png"))
-my_label = Label(root, image = Background_image)
+conn.close
+
+
+my_image = ImageTk.PhotoImage(Image.open("Signup_Login.png"))
+
+my_label = Label(root, image = my_image)
+
 my_label.place(x=0, y=0, relwidth=1, relheight=1)
-Font_candl = Font(family = "Champagne & Limousines", size = 21)
 
-font_stark = Font(family = "Stark", size = 16)
+Font_candl = Font(family = "Champagne & Limousines", size = 17)
+Font_candl2 = Font(family = "Champagne & Limousines", size = 21)
 
+Font_pas = Font(family = "Password", size = 17)
+Font_pas1 = Font(family = "Password", size = 21)
 
+Username1 = Entry(root, width = 50, bg = "#F8F1F1", bd = 2, font = Font_candl )
+Username1.place(x = 700, y = 500)
 
+Username_label = Label(root, text = "Username:", font = Font_candl2)
+Username_label.place(x = 500, y = 500)
 
-# Login Page
-U_E = Entry(root, width = 30, font = font_stark, bg = "#F8F1F1")
-U_E.place(x = 650, y = 500)
+Password1 = Entry(root, width = 50, bg = "#F8F1F1", bd = 2, font = Font_pas )
+Password1.place(x = 700, y = 600)
 
-U_E_Label = Label(root, text = "Username:", font = Font_candl)
-U_E_Label.place(x = 470, y = 500)
+Password1_label = Label(root, text = "Password:", font = Font_candl2)
+Password1_label.place(x = 500, y = 600)
 
-P_E = Entry(root, width = 30, font = font_stark, bg = "#F8F1F1")
-P_E.place(x = 650, y = 600)   
+def Signup():
 
-P_E_Label = Label(root, text = "Password:", font = Font_candl)
-P_E_Label.place(x = 475, y = 600)
-
-login_image = ImageTk.PhotoImage(Image.open("1.png"))
-login_btn = Button(root, image = login_image)
-login_btn.place(x = 500, y= 700)
-
-
-
-logind_image = ImageTk.PhotoImage(Image.open("3.png"))
-logind_btn = Button(root, image = logind_image)
-logind_btn.place(x = 1200, y= 700)
-
-def SignDoctor():
-      U_E.destroy()
-      U_E_Label.destroy()
-      P_E.destroy()
-      P_E_Label.destroy()
-      login_btn.destroy()
-      logind_btn.destroy()
-      signupd_btn.destroy()
-      signup_btn.destroy()
-
-      #Sign up page for doctors
-
-
-      fullname = Entry(root,  width = 30, font = font_stark)
-      fullname.place(x = 550, y = 560)
-      label1 = Label(root, text = "Full name: ", font = Font_candl).place(x = 120, y = 560)
-
-      email = Entry(root, width = 30, font = font_stark)
-      email.place(x = 650, y = 510)
-      label2 = Label(root, text = "Email address: ", font = Font_candl).place(x = 320, y = 510)
-
-      username = Entry(root, width = 30, font = font_stark)
-      username.place(x = 650, y = 660)
-      label3 = Label(root, text = "Username: ", font = Font_candl).place(x = 620, y = 660)
-
-      password = Entry(root, width = 30, font = font_stark)
-      password.place(x = 350, y = 710)
-      label4 = Label(root, text = "Password: ", font = Font_candl).place(x = 320, y = 710)
-
-      linkedin = Entry(root, width = 30, font = font_stark)
-      linkedin.place(x = 350, y = 510)
-      label6 = Label(root, text = "Linkedin Profile Link: ", font = Font_candl).place(x = 320, y = 510)
-
-      specialization = Entry(root, width = 30, font = font_stark)
-      specialization.place(x = 350, y = 560)
-      label7 = Label(root, text = "Field of Specialization: ", font = Font_candl).place(x = 320, y = 560)
-
-
-      conn = sqlite3.connect("Signup_details.db")
-
-      c = conn.cursor()
+      Username1.destroy()
+      Username_label.destroy()
+      Username_label.destroy()
+      Password1.destroy()
+      Password1_label.destroy()
+      Login_Btn.destroy()
+      Signup_Btn1.destroy()
       
 
-      conn.commit()
+      Font_candl = Font(family = "Champagne & Limousines", size = 17)
+      Font_candl2 = Font(family = "Champagne & Limousines", size = 21)
+
+      Font_pas1 = Font(family = "Password", size = 21)
 
 
-      conn.close()
-
-
-
-signupd_image = ImageTk.PhotoImage(Image.open("4.png"))
-signupd_btn = Button(root, image = signupd_image, command = SignDoctor)
-signupd_btn.place(x = 100, y= 700)
-
-##def open():
-##    #global my_image
-##    #root.filename = filedialog.askopenfilename(initialdir = "C:", title = "Select a File", filetypes = (("PNG files","*.png"), ("all files", "*.*")))
-##
-##
-##
-##    my_image =Image.open("C:\\Users\\kasam\\Desktop\\x and y .png")
-##    resized = my_image.resize((1000,1000))
-##    new_pic = ImageTk.PhotoImage(resized)
-##    image_label = Label(image = new_pic)
-##    image_label.place(x = 800, y = 800)
-##    print("read")
-
-#open_certificate = Button(root, text = "Open File", command = open).place(x = 450, y = 610)
-
-
-def register():
-      U_E.destroy()
-      U_E_Label.destroy()
-      P_E.destroy()
-      P_E_Label.destroy()
-      login_btn.destroy()
-      logind_btn.destroy()
-      signupd_btn.destroy()
-      signup_btn.destroy()
-
-
-      Name = Entry(root, width = 35, bg = "#F8F1F1", bd = 2, font = font_stark)
+      Name = Entry(root, width = 35, bg = "#F8F1F1", bd = 2, font = Font_candl)
       Name.place(x = 600, y = 500)
 
-      Name_label = Label(root, text = "Enter your name:", font = Font_candl)
+      Name_label = Label(root, text = "Enter your name:", font = Font_candl2)
       Name_label.place(x  = 400, y = 500)
 
-      Username = Entry(root, width = 35, bg = "#F8F1F1", bd = 2, font = font_stark )
+      Username = Entry(root, width = 35, bg = "#F8F1F1", bd = 2, font = Font_candl)
       Username.place(x = 600, y = 550)
 
-      Username_label = Label(root, text = "Pick a Username:", font = Font_candl)
-      Username_label.place(x = 400, y = 550)
+      Username_label1 = Label(root, text = "Pick a Username:", font = Font_candl2)
+      Username_label1.place(x = 400, y = 550)
 
-      Password = Entry(root, width = 35, bg = "#F8F1F1", bd = 2, font = font_stark)
+      Password = Entry(root, width = 35, bg = "#F8F1F1", bd = 2, font = Font_pas )
       Password.place(x = 600, y = 600)
 
-      Password_label = Label(root, text = "Pick a Password:", font = Font_candl)
+      Password_label = Label(root, text = "Pick a Password:", font = Font_candl2)
       Password_label.place(x = 400, y = 600)
 
-      Email = Entry(root, width = 35, bg = "#F8F1F1", bd = 2, font = font_stark)
+      Email = Entry(root, width = 35, bg = "#F8F1F1", bd = 2, font = Font_candl )
       Email.place(x = 600, y = 650)
 
-      Email_label = Label(root, text = "Enter your Email:", font = Font_candl)
+      Email_label = Label(root, text = "Enter your Email:", font = Font_candl2)
       Email_label.place(x = 400, y = 650)
 
 
@@ -163,7 +105,6 @@ def register():
 
 
       def Register():
-            
         #Send email and error
         regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 
@@ -183,17 +124,13 @@ def register():
         from_adress = email
         to_adress = r
 
-
-
         def check(em):
-              
-              
-              if(re.search(regex,em)):
-                    print("Valid Email")  
-                        
-              else:
-                    print("Invalid Email")
-                    messagebox.showwarning("Warning", "Invalid Email")
+            if(re.search(regex,em)):  
+                print("Valid Email")  
+                  
+            else:  
+                print("Invalid Email")
+                messagebox.showwarning("Warning", "Invalid Email")
 
           
 
@@ -208,14 +145,11 @@ def register():
 
         smtp_object.sendmail(from_adress,to_adress,msg)
 
-        conn = sqlite3.connect('User_Info')
+        conn = sqlite3.connect('User_Info.db')
 
         # create cursor
 
         c = conn.cursor()
-      
-        conn.commit()
-        
 
         #insert into tabel
         c.execute("INSERT INTO Info VALUES (:Name, :Username, :Password, :Email )",
@@ -223,25 +157,107 @@ def register():
                         'Name':Name.get(),
                         'Username':Username.get(),
                         'Password':Password.get(),
-                        'Email': Email.get()
+                        'Email': Email.get() })
+
+        c.execute("SELECT *, oid FROM Info")
+        records = c.fetchall()
+        print_record = ''       
+        for record in records:
+              print_record += str(record[0]) + " " + str(record[1])
+
+              
+        Query_label =Label(root, text = print_record)
+        Query_label.grid(row = 12, column = 0, columnspan =2)
+            #commit changes
+        conn.commit()
+       #close database
+        conn.close
 
 
-                        })
 
-        Name.delete(0,END)
-        Password.delete(0,END)
-        Email.delete(0,END)
-        Username.delete(0,END)
-      signup_image1 = ImageTk.PhotoImage(Image.open("2.png"))
-      signup_btn2 = Button(root, image = signup_image, command = Register)
-      signup_btn2.place(x = 700, y= 700)
+        Username.delete(0, END)
+        Password.delete(0, END)
+        Email.delete(0, END)
+        Name.delete(0, END)
 
+      Signup_image= ImageTk.PhotoImage(Image.open("1.png"))
+      Signup_Btn = Button(root, text = "Signup", command = Register, font = Font_candl2 )
+      Signup_Btn.place(x = 700, y = 690)
+
+
+# Background Image
+
+def newpage():
+      Username1.destroy()
+      Username_label.destroy()
+      Username_label.destroy()
+      Password1.destroy()
+      Password1_label.destroy()
+      Login_Btn.destroy()
+      Signup_Btn1.destroy()
+      my_label.destroy()
 
       
 
-signup_image = ImageTk.PhotoImage(Image.open("2.png"))
-signup_btn = Button(root, image = signup_image, command = register)
-signup_btn.place(x = 900, y= 700)
+def Login():
+
+
+    use = Username1.get()
+    pas = Password1.get()
+    
+    conn = sqlite3.connect('User_Info.db')
+    c = conn.cursor()
+
+    c.execute("SELECT *, oid FROM Info")
+    records = c.fetchall()
+
+    for record in records:
+        m = 0
+        print(record)
+        print(use)
+        m = 0
+        if use == record[1]:
+            r = record
+            print("success")
+            if pas == record[2]:
+                  print("success")
+                  newpage()
+
+                
+            else:
+                print("Fail")
+                messagebox.showerror("Error", "Wrong username or  password")
+                break
+                
+                        
+        else:
+            print("Fail")
+            #messagebox.showerror("Error", "Please enter your username or  password")
+
+         
+
+
+        #commit changes
+        conn.commit()
+
+        #close database
+        conn.close
+        
+
+
+
+
+# Buttons
+Login_image= ImageTk.PhotoImage(Image.open("1.png"))
+Login_Btn = Button(root, image = Login_image, command = Login)
+Login_Btn.place(x = 450, y = 700)
+
+Signup_image= ImageTk.PhotoImage(Image.open("2.png"))
+Signup_Btn1 = Button(root, image = Signup_image, command = Signup)
+Signup_Btn1.place(x = 850, y = 700)
+
+####
+
 
 
 root.mainloop()
