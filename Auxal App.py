@@ -41,6 +41,21 @@ my_label = Label(root, image = my_image)
 
 my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
+my_image1 = ImageTk.PhotoImage(Image.open("Home page.png"))
+
+my_label1 = Label(root, image = my_image1)
+
+btn_FAQ = ImageTk.PhotoImage(Image.open("FAQ.png"))
+btn_FAQ_btn = Button(root, image = btn_FAQ)
+
+mis = ImageTk.PhotoImage(Image.open("Minform.png"))
+mis_btn = Button(root, image = mis)
+
+
+my_label = Label(root, image = my_image)
+
+my_label.place(x=0, y=0, relwidth=1, relheight=1)
+
 Font_candl = Font(family = "Champagne & Limousines", size = 17)
 Font_candl2 = Font(family = "Champagne & Limousines", size = 21)
 
@@ -187,7 +202,7 @@ def Signup():
 
 # Background Image
 
-def newpage():
+def homepage():
       Username1.destroy()
       Username_label.destroy()
       Username_label.destroy()
@@ -196,6 +211,14 @@ def newpage():
       Login_Btn.destroy()
       Signup_Btn1.destroy()
       my_label.destroy()
+
+      my_label1.place(x=0, y=0, relwidth=1, relheight=1)
+
+      btn_FAQ_btn.place(x = 96, y = 700)
+
+      mis_btn.place(x = 500, y = 400)
+
+
 
       
 
@@ -221,7 +244,7 @@ def Login():
             print("success")
             if pas == record[2]:
                   print("success")
-                  newpage()
+                  homepage()
 
                 
             else:
