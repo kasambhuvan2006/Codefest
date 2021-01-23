@@ -66,45 +66,45 @@ def SignDoctor():
       #Sign up page for doctors
 
 
+      fullname = Entry(root,  width = 30, font = font_stark)
+      fullname.place(x = 550, y = 560)
+      label1 = Label(root, text = "Full name: ", font = Font_candl).place(x = 120, y = 560)
 
-      root = Tk()
-      root.title("Doctor Sign-Up")
+      email = Entry(root, width = 30, font = font_stark)
+      email.place(x = 650, y = 510)
+      label2 = Label(root, text = "Email address: ", font = Font_candl).place(x = 320, y = 510)
 
-      fullname = Entry(root,  width = 100)
-      fullname.place(x = 350, y = 260)
-      label1 = Label(root, text = "Full name: ").place(x = 320, y = 260)
+      username = Entry(root, width = 30, font = font_stark)
+      username.place(x = 650, y = 660)
+      label3 = Label(root, text = "Username: ", font = Font_candl).place(x = 620, y = 660)
 
-      email = Entry(root, width = 100)
-      email.place(x = 350, y = 310)
-      label2 = Label(root, text = "Email address: ").place(x = 320, y = 310)
+      password = Entry(root, width = 30, font = font_stark)
+      password.place(x = 350, y = 710)
+      label4 = Label(root, text = "Password: ", font = Font_candl).place(x = 320, y = 710)
 
-      username = Entry(root, width = 100)
-      username.place(x = 350, y = 360)
-      label3 = Label(root, text = "Username: ").place(x = 320, y = 360)
-
-      password = Entry(root, width = 100)
-      password.place(x = 350, y = 410)
-      label4 = Label(root, text = "Password: ").place(x = 320, y = 410)
-
-      confirm = Entry(root, width = 100)
-      confirm.place(x = 350, y = 460)
-      label5 = Label(root, text = "Confirm Password: ").place(x = 320, y = 460)
-
-      linkedin = Entry(root, width = 100)
+      linkedin = Entry(root, width = 30, font = font_stark)
       linkedin.place(x = 350, y = 510)
-      label6 = Label(root, text = "Linkedin Profile Link: ").place(x = 320, y = 510)
+      label6 = Label(root, text = "Linkedin Profile Link: ", font = Font_candl).place(x = 320, y = 510)
 
-      specialization = Entry(root, width = 100)
+      specialization = Entry(root, width = 30, font = font_stark)
       specialization.place(x = 350, y = 560)
-      label7 = Label(root, text = "Field of Specialization: ").place(x = 320, y = 560)
+      label7 = Label(root, text = "Field of Specialization: ", font = Font_candl).place(x = 320, y = 560)
 
-      label8 = Label(root, text = "Proof of Certification: ").place(x = 320, y = 610)
 
+      conn = sqlite3.connect("Signup_details.db")
+
+      c = conn.cursor()
+      
+
+      conn.commit()
+
+
+      conn.close()
 
 
 
 signupd_image = ImageTk.PhotoImage(Image.open("4.png"))
-signupd_btn = Button(root, image = signupd_image, commad = SignDoctor)
+signupd_btn = Button(root, image = signupd_image, command = SignDoctor)
 signupd_btn.place(x = 100, y= 700)
 
 ##def open():
