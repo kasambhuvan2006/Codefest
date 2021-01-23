@@ -124,16 +124,17 @@ def mispage():
       des_label.place(x = 400, y = 400)
       EnterLabel.place(x = 300, y = 150)
 
-      r = Title.get()
-      y = des.get("1.0","end")
 
       sub_btn = Button(s, text = "Submit", font = Font_candl2, command = Sub)
       sub_btn.place(x = 800, y = 700)
 
       
-def mis():
-      
+def mis1():
+      r = Tk()
+      r.title("Hello")
+      r.geometry("1920x1080")
 
+      
       
 
 
@@ -274,8 +275,7 @@ def Signup():
               print_record += str(record[0]) + " " + str(record[1])
 
               
-        Query_label =Label(root, text = print_record)
-        Query_label.grid(row = 12, column = 0, columnspan =2)
+
             #commit changes
         conn.commit()
        #close database
