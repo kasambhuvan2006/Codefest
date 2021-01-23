@@ -45,12 +45,15 @@ my_image1 = ImageTk.PhotoImage(Image.open("Home page.png"))
 
 my_label1 = Label(root, image = my_image1)
 
+
+
 btn_FAQ = ImageTk.PhotoImage(Image.open("FAQ.png"))
 btn_FAQ_btn = Button(root, image = btn_FAQ)
 
-mis = ImageTk.PhotoImage(Image.open("Minform.png"))
-mis_btn = Button(root, image = mis)
 
+
+Verificationbg = ImageTk.PhotoImage(Image.open("Online consultation.png"))
+vbg = Label(root, image = Verificationbg )
 
 my_label = Label(root, image = my_image)
 
@@ -58,6 +61,7 @@ my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 Font_candl = Font(family = "Champagne & Limousines", size = 17)
 Font_candl2 = Font(family = "Champagne & Limousines", size = 21)
+Font_candl3 = Font(family = "Champagne & Limousines", size = 48)
 
 Font_pas = Font(family = "Password", size = 17)
 Font_pas1 = Font(family = "Password", size = 21)
@@ -200,7 +204,15 @@ def Signup():
       Signup_Btn.place(x = 700, y = 690)
 
 
-# Background Image
+def mispagepage():
+      my_label1.destroy()
+      btn_FAQ_btn.destroy()
+      mis_btn.place.destroy()
+      onl_con_btn.destroy()
+      my_label1.destroy()
+
+      
+
 
 def homepage():
       Username1.destroy()
@@ -216,8 +228,28 @@ def homepage():
 
       btn_FAQ_btn.place(x = 96, y = 700)
 
-      mis_btn.place(x = 500, y = 400)
+      onl_con_btn.place(x = 800, y = 600)
 
+      def mispage():
+            my_label1.destroy()
+            btn_FAQ_btn.destroy()
+            #mis_btn.place.destroy()
+            #onl_con_btn.destroy()
+            my_label1.destroy()
+            vbg.place(x = 0, y =0 , relwidth=1, relheight=1)
+      
+            
+      mis = ImageTk.PhotoImage(Image.open("Minform.png"))
+      mis_btn = Button(root, image = mis, commmand = mispage)
+      mis_btn.place(x = 500, y = 600)
+
+      onl_con = ImageTk.PhotoImage(Image.open("Online consultation.png"))
+      onl_con_btn = Button(root, image = onl_con)
+      onl_con_btn.place(x = 700, y = 600)
+      
+
+      Choose = Label(root, text = "Choose where you want to go next: ", font = Font_candl3)
+      Choose.place(x = 400, y = 300)
 
 
       
