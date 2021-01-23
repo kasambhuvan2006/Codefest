@@ -28,11 +28,30 @@ Password text,
 Email text )""")
 '''
 
+conn = sqlite3.connect("Information.db")
 
+# create cursor
+
+c = conn.cursor()
+'''
+
+c.execute(""" CREATE TABLE Misinfo(
+Title text,
+Des text,
+YN text )""")
+
+'''
+conn.commit()
+#close database
+conn.close
+
+pic = "Verification page.png"
 
 #close database
 
-conn.close
+Font_candl = Font(family = "Champagne & Limousines", size = 17)
+Font_candl2 = Font(family = "Champagne & Limousines", size = 21)
+Font_candl3 = Font(family = "Champagne & Limousines", size = 48)
 
 
 my_image = ImageTk.PhotoImage(Image.open("Signup_Login.png"))
@@ -47,21 +66,68 @@ my_label1 = Label(root, image = my_image1)
 
 
 
+
+
 btn_FAQ = ImageTk.PhotoImage(Image.open("FAQ.png"))
 btn_FAQ_btn = Button(root, image = btn_FAQ)
 
 
 
-Verificationbg = ImageTk.PhotoImage(Image.open("Online consultation.png"))
-vbg = Label(root, image = Verificationbg )
+def mispage():
+      s = Toplevel(height = 1080, width = 1920)
+
+      vbg_image = ImageTk.PhotoImage(Image.open("Verification page1.png"))
+      vbg = Label(s, image = vbg_image)
+      vbg.place(x = 0, y = 0, relwidth=1, relheight=1 )
+
+      def Sub():
+            return
+      
+      Title = Entry(s, width = 40, font = Font_candl2, bg = "#F2EDED")
+
+
+      Title_label = Label(s, text = "Title:", font = Font_candl2, bg = "#F8F1F1")
+
+
+      des = Text ( s, height = 15, font = Font_candl, width = 70, bg = "#F2EDED")
+
+
+      des_label = Label(s, text = "Description:", font = Font_candl2, bg = "#F8F1F1")
+
+
+      EnterLabel = Label(s, text = "Enter the information that you want to check", font = Font_candl3, bg = "#F8F1F1")
+
+      
+      des.place(x = 405, y = 450)
+      Title.place(x= 483, y =300)
+      Title_label.place(x = 400, y = 300)
+      des_label.place(x = 400, y = 400)
+      EnterLabel.place(x = 300, y = 150)
+
+      r = Title.get()
+      y = des.get("1.0","end")
+
+      sub_btn = Button(s, text = "Submit", font = Font_candl2, command = Sub)
+      sub_btn.place(x = 800, y = 700)
+
+
+      
+
+
+onl_con = ImageTk.PhotoImage(Image.open("Online consultation.png"))
+onl_con_btn = Button(root, image = onl_con)
+
+
+
 
 my_label = Label(root, image = my_image)
 
 my_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-Font_candl = Font(family = "Champagne & Limousines", size = 17)
-Font_candl2 = Font(family = "Champagne & Limousines", size = 21)
-Font_candl3 = Font(family = "Champagne & Limousines", size = 48)
+Choose = Label(root, text = "Choose where you want to go next: ", font = Font_candl3)
+
+mis = ImageTk.PhotoImage(Image.open("Minform.png"))
+mis_btn = Button(root, image = mis, command = mispage )
 
 Font_pas = Font(family = "Password", size = 17)
 Font_pas1 = Font(family = "Password", size = 21)
@@ -204,13 +270,6 @@ def Signup():
       Signup_Btn.place(x = 700, y = 690)
 
 
-def mispagepage():
-      my_label1.destroy()
-      btn_FAQ_btn.destroy()
-      mis_btn.place.destroy()
-      onl_con_btn.destroy()
-      my_label1.destroy()
-
       
 
 
@@ -230,25 +289,9 @@ def homepage():
 
       onl_con_btn.place(x = 800, y = 600)
 
-      def mispage():
-            my_label1.destroy()
-            btn_FAQ_btn.destroy()
-            #mis_btn.place.destroy()
-            #onl_con_btn.destroy()
-            my_label1.destroy()
-            vbg.place(x = 0, y =0 , relwidth=1, relheight=1)
-      
-            
-      mis = ImageTk.PhotoImage(Image.open("Minform.png"))
-      mis_btn = Button(root, image = mis, commmand = mispage)
       mis_btn.place(x = 500, y = 600)
 
-      onl_con = ImageTk.PhotoImage(Image.open("Online consultation.png"))
-      onl_con_btn = Button(root, image = onl_con)
-      onl_con_btn.place(x = 700, y = 600)
       
-
-      Choose = Label(root, text = "Choose where you want to go next: ", font = Font_candl3)
       Choose.place(x = 400, y = 300)
 
 
