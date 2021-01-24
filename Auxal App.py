@@ -40,14 +40,14 @@ conn = sqlite3.connect("Information.db")
 # create cursor
 
 c = conn.cursor()
-'''
 
-c.execute(""" CREATE TABLE Misinfo(
+'''
+c.execute(""" CREATE TABLE Misinfo1(
 Title text,
 Des text,
 YN text )""")
-
 '''
+
 conn.commit()
 #close database
 conn.close
@@ -114,6 +114,33 @@ def FAQ():
 btn_FAQ = ImageTk.PhotoImage(Image.open("FAQ.png"))
 btn_FAQ_btn = Button(root, image = btn_FAQ, command = FAQ)
 
+def Forum():
+      y = Toplevel(width = 1920, height = 1080, bg = "#f8f1f1")
+      print("Clicked")
+      conn = sqlite3.connect("Information.db")
+      n = conn.cursor()
+      n.execute(""" SELECT * , oid from Misinfo1 """)
+      records1 = n.fetchall()
+
+      print_ = ''
+
+      for record1 in records1:
+            on_off = record1[2].split()
+            if on_off[0] == "on":
+                  print_ += str(record1[0]) + "\n" + str(record[1]) + "\n"
+
+      label = Label(y, text = print_, font = Font_candl2  )
+      label.place(x = 550, y = 200)
+            
+      print( record[2] , on_off[0])
+      conn.commit()
+      conn.close
+
+      
+      y.mainloop()
+
+forum = ImageTk.PhotoImage(Image.open("forum.png"))
+btn_forum_btn = Button(root, image = forum, command = Forum)
 
 
 def mispage():
@@ -131,7 +158,7 @@ def mispage():
 
             y = des.get("1.0","end")
 
-            c.execute("INSERT INTO Misinfo VALUES (:Name, :Des, :YN)",
+            c.execute("INSERT INTO Misinfo1 VALUES (:Name, :Des, :YN)",
             {
             'Name':Title.get(),
             'Des':des.get("1.0","end"),
@@ -184,7 +211,7 @@ def misinfo():
       c = conn.cursor()
 
 
-      c.execute(""" SELECT * , oid from Misinfo """)
+      c.execute(""" SELECT * , oid from Misinfo1 """)
       records = c.fetchall()
       xn = 100
       
@@ -220,14 +247,14 @@ def misinfo():
       c6.deselect()
       c7.deselect()
 
-      c.place(x = 1400 , y = 100)
-      c1.place(x = 1400 , y = 200 )
-      c2.place(x = 1400, y = 300 )
-      c3.place(x = 1400, y = 400)
-      c4.place(x = 1400, y = 500 )
-      c5.place(x = 1400 , y = 600)
-      c6.place(x = 1400, y = 700)
-      c7.place(x = 1400, y = 800)
+      c.place(x = 1300 , y = 100)
+      c1.place(x = 1300 , y = 200 )
+      c2.place(x = 1300, y = 300 )
+      c3.place(x = 1300, y = 400)
+      c4.place(x = 1300, y = 500 )
+      c5.place(x = 1300 , y = 600)
+      c6.place(x = 1300, y = 700)
+      c7.place(x = 1300, y = 800)
 
 
       print(print_)
@@ -244,11 +271,11 @@ def misinfo():
             print(cs[0])
             conn = sqlite3.connect("Information.db")
             x = conn.cursor()
-            x.execute(""" SELECT * , oid from Misinfo """)
+            x.execute(""" SELECT * , oid from Misinfo1 """)
             records = x.fetchall()
             n = 1
             for record in records:
-                  x.execute(""" UPDATE Misinfo SET
+                  x.execute(""" UPDATE Misinfo1 SET
 
                   Title = :Title,
                   des = :des,
@@ -577,11 +604,12 @@ def homepage():
 
       btn_FAQ_btn.place(x = 96, y = 700)
 
-      onl_con_btn.place(x = 800, y = 600, )
+      btn_forum_btn.place(x = 1000, y = 600)
 
-      mis_btn.place(x = 500, y = 600)
+      onl_con_btn.place(x = 700, y = 600, )
 
-      
+      mis_btn.place(x = 400, y = 600)
+            
       Choose.place(x = 400, y = 300)
 
 
