@@ -42,7 +42,7 @@ conn = sqlite3.connect("Information.db")
 c = conn.cursor()
 
 '''
-c.execute(""" CREATE TABLE Misinfo1(
+c.execute(""" CREATE TABLE Misinfo2(
 Title text,
 Des text,
 YN text )""")
@@ -119,20 +119,28 @@ def Forum():
       print("Clicked")
       conn = sqlite3.connect("Information.db")
       n = conn.cursor()
-      n.execute(""" SELECT * , oid from Misinfo1 """)
+      n.execute(""" SELECT * , oid from Misinfo2 """)
       records1 = n.fetchall()
 
       print_ = ''
 
+      on_off1 = ['on','off']
+
+      print(on_off1[0])
+
       for record1 in records1:
-            on_off = record1[2].split()
-            if on_off[0] == "on":
-                  print_ += str(record1[0]) + "\n" + str(record[1]) + "\n"
+            on_off1 = record1[2].split()
+            
+            if on_off1[0] == "on":
+                  print(0)
+                  print_ += str(record1[0]) + "\n" + str(record1[1]) + "\n"
+            else:
+                  continue
 
       label = Label(y, text = print_, font = Font_candl2  )
       label.place(x = 550, y = 200)
-            
-      print( record[2] , on_off[0])
+      print(print_)
+      print( record1[2] , on_off1[0])
       conn.commit()
       conn.close
 
@@ -158,12 +166,14 @@ def mispage():
 
             y = des.get("1.0","end")
 
-            c.execute("INSERT INTO Misinfo1 VALUES (:Name, :Des, :YN)",
+            c.execute("INSERT INTO Misinfo2 VALUES (:Name, :Des, :YN)",
             {
             'Name':Title.get(),
             'Des':des.get("1.0","end"),
             'YN':'' })
-            
+
+            Title.delete(0, END)
+            des.delete('1.0', 'end')
 
             
             
@@ -194,6 +204,9 @@ def mispage():
       des_label.place(x = 400, y = 400)
       EnterLabel.place(x = 300, y = 150)
 
+  
+      
+
 
       sub_btn = Button(s, text = "Submit", font = Font_candl2, command = Sub)
       sub_btn.place(x = 800, y = 700)
@@ -211,7 +224,7 @@ def misinfo():
       c = conn.cursor()
 
 
-      c.execute(""" SELECT * , oid from Misinfo1 """)
+      c.execute(""" SELECT * , oid from Misinfo2 """)
       records = c.fetchall()
       xn = 100
       
@@ -256,6 +269,7 @@ def misinfo():
       c6.place(x = 1300, y = 700)
       c7.place(x = 1300, y = 800)
 
+      
 
       print(print_)
       
@@ -271,11 +285,11 @@ def misinfo():
             print(cs[0])
             conn = sqlite3.connect("Information.db")
             x = conn.cursor()
-            x.execute(""" SELECT * , oid from Misinfo1 """)
+            x.execute(""" SELECT * , oid from Misinfo2 """)
             records = x.fetchall()
             n = 1
             for record in records:
-                  x.execute(""" UPDATE Misinfo1 SET
+                  x.execute(""" UPDATE Misinfo2 SET
 
                   Title = :Title,
                   des = :des,
@@ -312,6 +326,28 @@ search1 = ImageTk.PhotoImage(Image.open("Search.png"))
 
 
 bg_con = ImageTk.PhotoImage(Image.open("Online consultation page.png"))
+
+def homepage():
+      Username1.destroy()
+      Username_label.destroy()
+      Username_label.destroy()
+      Password1.destroy()
+      Password1_label.destroy()
+      Login_Btn.destroy()
+      Signup_Btn1.destroy()
+      my_label.destroy()
+
+      my_label1.place(x=0, y=0, relwidth=1, relheight=1)
+
+      btn_FAQ_btn.place(x = 96, y = 700)
+
+      btn_forum_btn.place(x = 1000, y = 600)
+
+      onl_con_btn.place(x = 700, y = 600, )
+
+      mis_btn.place(x = 400, y = 600)
+            
+      Choose.place(x = 400, y = 300)
 
 
 
@@ -503,6 +539,43 @@ def Signup():
       Email_label = Label(root, text = "Enter your Email:", font = Font_candl2)
       Email_label.place(x = 400, y = 650)
 
+      def home():
+            Username.destroy()
+            Username_label1.destroy()
+            Password.destroy()
+            Password_label.destroy()
+            Email.destroy()
+            Email_label.destroy()
+            home_btn.destroy()
+            Name.destroy()
+            Name_label.destroy()
+            Signup_Btn.destroy()
+
+            Username1 = Entry(root, width = 50, bg = "#F8F1F1", bd = 2, font = Font_candl )
+            Username1.place(x = 700, y = 500)
+
+            Username_label = Label(root, text = "Username:", font = Font_candl2)
+            Username_label.place(x = 500, y = 500)
+
+            Password1 = Entry(root, width = 50, bg = "#F8F1F1", bd = 2, font = Font_pas )
+            Password1.place(x = 700, y = 600)
+
+            Password1_label = Label(root, text = "Password:", font = Font_candl2)
+            Password1_label.place(x = 500, y = 600)
+            
+            Login_image= ImageTk.PhotoImage(Image.open("1.png"))
+            Login_Btn = Button(root, image = Login_image, command = Login)
+            Login_Btn.place(x = 450, y = 700)
+
+            Login()
+
+
+            
+
+
+      home_btn = Button(root , text = "Go to Login Page", font = Font_candl2, command = home)
+      home_btn.place(x = 100, y = 0)
+
 
 
 
@@ -590,27 +663,7 @@ def Signup():
       
 
 
-def homepage():
-      Username1.destroy()
-      Username_label.destroy()
-      Username_label.destroy()
-      Password1.destroy()
-      Password1_label.destroy()
-      Login_Btn.destroy()
-      Signup_Btn1.destroy()
-      my_label.destroy()
 
-      my_label1.place(x=0, y=0, relwidth=1, relheight=1)
-
-      btn_FAQ_btn.place(x = 96, y = 700)
-
-      btn_forum_btn.place(x = 1000, y = 600)
-
-      onl_con_btn.place(x = 700, y = 600, )
-
-      mis_btn.place(x = 400, y = 600)
-            
-      Choose.place(x = 400, y = 300)
 
 
 def homepagedoc():
