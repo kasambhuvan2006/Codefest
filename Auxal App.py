@@ -129,10 +129,114 @@ def mispage():
       sub_btn.place(x = 800, y = 700)
 
       
-def mis1():
-      r = Tk()
-      r.title("Hello")
-      r.geometry("1920x1080")
+def misinfo():
+      print("clicked!")
+      r = Toplevel(height = 1080, width = 1920)
+
+      bg = Label(r, image = my_image1)
+
+      bg.place(x = 0, y =0 , relwidth=1, relheight=1 )
+
+      conn = sqlite3.connect("Information.db")
+      c = conn.cursor()
+
+
+      c.execute(""" SELECT * , oid from Misinfo """)
+      records = c.fetchall()
+      xn = 100
+      
+      print_ = ''
+      print(records)
+
+      var = StringVar()
+      var1 = StringVar()
+      var2 = StringVar()
+      var3 = StringVar()
+      var4 = StringVar()
+      var5 = StringVar()
+      var6 = StringVar()
+      var7 = StringVar()
+      
+      for record in records:
+            print_+= "Title:                                                  " + "\t" + str(record[0]) +"\n" + "Description: " + "\t" + str(record[1]) + "\n" + "\n"
+      c = Checkbutton(r, text = "If true check this box",variable = var, onvalue = "on", offvalue = "off")
+      c1 = Checkbutton(r, text = "If true check this box",variable = var1, onvalue = "on", offvalue = "off")
+      c2 = Checkbutton(r, text = "If true check this box",variable = var2, onvalue = "on", offvalue = "off")
+      c3 = Checkbutton(r, text = "If true check this box",variable = var3, onvalue = "on", offvalue = "off")
+      c4 = Checkbutton(r, text = "If true check this box",variable = var4, onvalue = "on", offvalue = "off")
+      c5 = Checkbutton(r, text = "If true check this box",variable = var5, onvalue = "on", offvalue = "off")
+      c6 = Checkbutton(r, text = "If true check this box",variable = var6, onvalue = "on", offvalue = "off")
+      c7 = Checkbutton(r, text = "If true check this box",variable = var7, onvalue = "on", offvalue = "off")
+
+      c.deselect()
+      c1.deselect()
+      c2.deselect()
+      c3.deselect()
+      c4.deselect()
+      c5.deselect()
+      c6.deselect()
+      c7.deselect()
+
+      c.place(x = 1400 , y = 100)
+      c1.place(x = 1400 , y = 200 )
+      c2.place(x = 1400, y = 300 )
+      c3.place(x = 1400, y = 400)
+      c4.place(x = 1400, y = 500 )
+      c5.place(x = 1400 , y = 600)
+      c6.place(x = 1400, y = 700)
+      c7.place(x = 1400, y = 800)
+
+
+      print(print_)
+      
+      label = Label(r, text = print_, font = Font_candl2, bg = "#F8F1F1")
+      label.place(x =400, y = 100)
+      print("Printed")
+      conn.commit()
+       #close database
+      conn.close
+
+      def Subm():
+            cs = [var.get(), var1.get(), var2.get(), var3.get(), var4.get(), var5.get(), var6.get(), var7.get()]
+            print(cs[0])
+            conn = sqlite3.connect("Information.db")
+            x = conn.cursor()
+            x.execute(""" SELECT * , oid from Misinfo """)
+            records = x.fetchall()
+            n = 1
+            for record in records:
+                  x.execute(""" UPDATE Misinfo SET
+
+                  Title = :Title,
+                  des = :des,
+                  Yn = :Yn
+
+                  WHERE oid = :oid """,
+                  { 'Title' : record[0],
+                  'des' : record[1],
+                  'Yn': cs[n],
+                    'oid': record[3]
+                    }
+                            )
+                  print("Success")
+                  n+= 1
+                  c.deselect()
+                  c1.deselect()
+                  c2.deselect()
+                  c3.deselect()
+                  c4.deselect()
+                  c5.deselect()
+                  c6.deselect()
+                  c7.deselect()
+
+            conn.commit()
+             #close database
+            conn.close
+      btn = Button(r, text = "Submit", font = Font_candl, command = Subm)
+      btn.place(x = 700, y = 750)
+
+      
+      r.mainloop()
 
       
       
@@ -151,7 +255,7 @@ mis = ImageTk.PhotoImage(Image.open("Minform.png"))
 mis_btn = Button(root, image = mis, command = mispage )
 
 mis1 = ImageTk.PhotoImage(Image.open("Minform.png"))
-mis_btn1 = Button(root, image = mis1, command = mis1 )
+mis_btn1 = Button(root, image = mis1, command = misinfo )
 
 Font_pas = Font(family = "Password", size = 17)
 Font_pas1 = Font(family = "Password", size = 21)
