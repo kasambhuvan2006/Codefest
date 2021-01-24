@@ -27,14 +27,14 @@ Username text,
 Password text,
 Email text )""")
 '''
-c.execute(""" CREATE TABLE Doc_info2(
+'''c.execute(""" CREATE TABLE Doc_info2(
 name text,
 spec text,
 av_d text,
 money text,
 yof text,
 link text,
-lang text)""")
+lang text)""")'''
 conn = sqlite3.connect("Information.db")
 
 # create cursor
@@ -71,12 +71,48 @@ my_image1 = ImageTk.PhotoImage(Image.open("Home page.png"))
 
 my_label1 = Label(root, image = my_image1)
 
+FAQ1 = ImageTk.PhotoImage(Image.open("FAQ.png"))
+
+
+def FAQ():
+      s = Toplevel(width = 1920, height = 1080, bg = "#f8f1f1")
+
+
+      label = Label(s, image = FAQ1)
+      label.place(x = 800, y = 10)
+      
+      label1 = Label(s, text = "Q. What does Auxsal mean?", font = ("Stark", 11)).place(x = 50, y = 60)
+      label2 = Label(s, text = "A. Auxsal is short for Auxilium Salutis, which means Health Helpers in Latin.", font = ("Stark", 11)).place(x = 70, y = 80)
+      label3 = Label(s, text = "Q. Who made this app?", font = ("Stark", 11)).place(x = 50, y = 110)
+      label4 = Label(s, text = "A. Four ninth graders, Bhuvan Kasam, Preetam Byahatti, Krishna Kalathur, and Isha Matta, together known as Glitch Advil, have collaborated and brought to existence Auxsal!", font = ("Stark", 11)).place(x = 70, y = 130)
+      label5 = Label(s, text = "Q. How can we trust this app?", font = ("Stark", 11)).place(x = 50, y = 160)
+      label6 = Label(s, text = "A. All of the information provided is verified by trustworthy doctors.", font = ("Stark", 11)).place(x = 70, y = 180)
+      label7 = Label(s, text = "Q. Are there any in-app purchases?", font = ("Stark", 11)).place(x = 50, y = 210)
+      label8 = Label(s, text = "A. In Auxsal, there are no-app purchases, however, services provided by doctors will require you to pay.", font = ("Stark", 11)).place(x = 70, y = 230)
+      label9 = Label(s, text = "Q. How are questions asked in the app answered?", font = ("Stark", 11)).place(x = 50, y = 260)
+      label10 = Label(s, text = "A. Certified doctors receive the questions asked in the app and return their answers which are displayed on the home page. The question is passed on to a few doctors specializing in that certain field,", font = ("Stark", 11)).place(x = 70, y = 280)
+      label11 = Label(s, text = "and the majority vote is considered correct.", font = ("Stark", 11)).place(x = 70, y = 300)
+      label12 = Label(s, text = "Q. What is the price for online consultation?", font = ("Stark", 11)).place(x = 50, y = 325)
+      label13 = Label(s, text = "A. The price varies according to the doctor and the requirements attended to. It’s like a regular visit to the doctor’s office, except for the fact that it’s online.", font = ("Stark", 11)).place(x = 70, y = 345)
+      label14 = Label(s, text = "Q. How do we know that the answers we receive are the most reliable?", font = ("Stark", 11)).place(x = 50, y = 375)
+      label15 = Label(s, text = "A. When at least 80% of the doctors the question has been sent to have replied with the same answer, that is considered to be the solution to whether the question is valid or not. So don’t ", font = ("Stark", 11)).place(x = 70, y = 395)
+      label16 = Label(s, text = "worry! The answers are coming from the experts.", font = ("Stark", 11)).place(x = 70, y = 415)
+      label17 = Label(s, text = "Q. How should we prepare for the online consultation?", font = ("Stark", 11)).place(x = 50, y = 440)
+      label18 = Label(s, text = "A. Just come ready with a list of symptoms and if you’ve tried any remedies before, please tell us what they are and the degree to which they worked.", font = ("Stark", 11)).place(x = 70, y = 460)
+      label19 = Label(s, text = "Q. What happens if the consultation doesn’t satisfy our concerns?", font = ("Stark", 11)).place(x = 50, y = 490)
+      label20 = Label(s, text = "A. If you don’t feel your consultation with the doctor was completely up to the mark, you can always book another appointment with another doctor who might be of better help. However, a refund may not ", font = ("Stark", 11)).place(x = 70, y = 510)
+      label21 = Label(s, text = "be possible as the doctors are very busy people with their own schedules that must be taken into account.", font = ("Stark", 11)).place(x = 70, y = 530)
+      label22 = Label(s, text = "Q. How does the online consultation work?", font = ("Stark", 11)).place(x = 50, y = 555)
+      label23 = Label(s, text = "A. Here’s the process to the entire online consultation: A search bar is given for you to input your specifications, for example your budget or the type of doctor you want to meet.", font = ("Stark", 11)).place(x = 70, y = 575)
+      label24 = Label(s, text = "According to those specifications, a list of available doctors will be shown, from which you can choose from. Once you choose a doctor, an appointment will be confirmed, where you would", font = ("Stark", 11)).place(x = 70, y = 600)
+      label25 = Label(s, text = "have a video call with that doctor to discuss with them.", font = ("Stark", 11)).place(x = 70, y = 625)
+
 
 
 
 
 btn_FAQ = ImageTk.PhotoImage(Image.open("FAQ.png"))
-btn_FAQ_btn = Button(root, image = btn_FAQ)
+btn_FAQ_btn = Button(root, image = btn_FAQ, command = FAQ)
 
 
 
@@ -245,7 +281,7 @@ def misinfo():
       
       r.mainloop()
 
-search = ImageTk.PhotoImage(Image.open("Search.png"))
+search1 = ImageTk.PhotoImage(Image.open("Search.png"))
 
 
 bg_con = ImageTk.PhotoImage(Image.open("Online consultation page.png"))
@@ -257,11 +293,27 @@ def con():
       bg_con_label = Label(o, image = bg_con)
       bg_con_label.place(x = 0, y = 0, relwidth = 1, relheight = 1)
 
-      search_button = Button(o, image = search)
-      search_button.place(x = 650, y = 200)
-
       e = Entry(o, width = 50, font = Font_candl2)
       e.place(x = 350, y = 150)
+      
+      def search():
+
+            c.execute("SELECT *, oid FROM Doc_info2")
+            print_ = ''
+            records = c.fetchall()
+            for y in records:
+                  r = e.get()
+
+                  if (r) == (y[0]) or (r) == (y[1]) or (r) == (y[2]) or (r) == (y[3]) or (r) == (y[4]) or (r) == (y[5])or (r) == (y[6]) or (r) == (y[7]):
+                        print_ = y[0] + '\n' + y[1] + '\n'+ y [2] + '\n' + y[3] + '\n' + y[4] + '\n'+ y [5] + '\n' + y[6]
+            label = Label(o, text = print_, font = Font_candl2, bg ="#f8f1f1")
+            label.place(x = 750, y = 400)
+            e.delete(0, END)
+
+      search_button = Button(o, image = search1, command = search)
+      search_button.place(x = 550, y = 200)
+
+
 
       conn = sqlite3.connect("User_Info.db")
 
@@ -270,12 +322,80 @@ def con():
       c = conn.cursor()
 
 
-      c.execute("INSERT INTO Doc_info1 VALUES (:Name, :spec, :av_d , :money, :yof, :lang  )",
+      c.execute("INSERT INTO Doc_info2 VALUES (:Name, :spec, :av_d , :money, :yof,:link, :lang  )",
         {
             'Name':"Rajeev Manmohan",
             'spec': "Psychology" ,
-            'av_d':"9pm to 10pm only on weekends",
-            'Email': Email.get() })
+            'av_d':"9pm to 10pm",
+            'money': "5,000",
+            'yof': "12",
+            'link':"meet.google.com/smb-jtij-tdi",
+            'lang':"Hindi, English"})
+
+      c.execute("INSERT INTO Doc_info2 VALUES (:Name, :spec, :av_d , :money, :yof,:link, :lang  )",
+        {
+            'Name':"Raj Malhotra",
+            'spec': "E.N.T" ,
+            'av_d':"9am to 10am",
+            'money': "2,000",
+            'yof': "10",
+            'link':"meet.google.com/xxd-daas-qcq",
+            'lang':"Bhojpuri, English"})
+      c.execute("INSERT INTO Doc_info2 VALUES (:Name, :spec, :av_d , :money, :yof,:link, :lang  )",
+        {
+            'Name':"Rajesh Koothrapalli",
+            'spec': "E.N.T" ,
+            'av_d':"9am to 10am",
+            'money': "1,500",
+            'yof': "5",
+            'link':"meet.google.com/xxd-daas-qcq",
+            'lang':"Marathi, English"})
+
+      c.execute("INSERT INTO Doc_info2 VALUES (:Name, :spec, :av_d , :money, :yof,:link, :lang  )",
+        {
+            'Name':"Rajeev Manmohan",
+            'spec': "Psychology" ,
+            'av_d':"9pm to 10pm",
+            'money': "5,000",
+            'yof': "12",
+            'link':"meet.google.com/smb-jtij-tdi",
+            'lang':"Hindi, English"})
+
+      c.execute("INSERT INTO Doc_info2 VALUES (:Name, :spec, :av_d , :money, :yof,:link, :lang  )",
+        {
+            'Name':"Raj Malhotra",
+            'spec': "gastroenterologist" ,
+            'av_d':"9am to 10am",
+            'money': "2,000",
+            'yof': "10",
+            'link':"meet.google.com/xxd-daas-qcq",
+            'lang':"Bhojpuri, English"})
+      c.execute("INSERT INTO Doc_info2 VALUES (:Name, :spec, :av_d , :money, :yof,:link, :lang  )",
+        {
+            'Name':"Tarak Mehta",
+            'spec': "Pediatrician" ,
+            'av_d':"3:00 PM to 5:00 PM",
+            'money': "3,500",
+            'yof': "9",
+            'link':"meet.google.com/ckj-extb-fdc",
+            'lang':"Marathi, English"})
+      c.execute("INSERT INTO Doc_info2 VALUES (:Name, :spec, :av_d , :money, :yof,:link, :lang  )",
+        {
+            'Name':"Tarak Mehta",
+            'spec': "Pediatrician" ,
+            'av_d':"3:00 PM to 5:00 PM",
+            'money': "3,500",
+            'yof': "9",
+            'link':"meet.google.com/ckj-extb-fdc",
+            'lang':"Marathi, English"})
+
+      
+
+
+
+
+       
+            
       
       conn.commit()
 
