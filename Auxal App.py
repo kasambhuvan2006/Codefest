@@ -27,7 +27,14 @@ Username text,
 Password text,
 Email text )""")
 '''
-
+c.execute(""" CREATE TABLE Doc_info2(
+name text,
+spec text,
+av_d text,
+money text,
+yof text,
+link text,
+lang text)""")
 conn = sqlite3.connect("Information.db")
 
 # create cursor
@@ -238,12 +245,48 @@ def misinfo():
       
       r.mainloop()
 
-      
-      
+search = ImageTk.PhotoImage(Image.open("Search.png"))
 
+
+bg_con = ImageTk.PhotoImage(Image.open("Online consultation page.png"))
+
+
+
+def con():
+      o = Toplevel(width = 1920, height = 1080)
+      bg_con_label = Label(o, image = bg_con)
+      bg_con_label.place(x = 0, y = 0, relwidth = 1, relheight = 1)
+
+      search_button = Button(o, image = search)
+      search_button.place(x = 650, y = 200)
+
+      e = Entry(o, width = 50, font = Font_candl2)
+      e.place(x = 350, y = 150)
+
+      conn = sqlite3.connect("User_Info.db")
+
+      # create cursor
+
+      c = conn.cursor()
+
+
+      c.execute("INSERT INTO Doc_info1 VALUES (:Name, :spec, :av_d , :money, :yof, :lang  )",
+        {
+            'Name':"Rajeev Manmohan",
+            'spec': "Psychology" ,
+            'av_d':"9pm to 10pm only on weekends",
+            'Email': Email.get() })
+      
+      conn.commit()
+
+      conn.close
+      
+      o.mainloop()      
+
+      
 
 onl_con = ImageTk.PhotoImage(Image.open("Online consultation.png"))
-onl_con_btn = Button(root, image = onl_con)
+onl_con_btn = Button(root, image = onl_con, command = con)
 
 my_label = Label(root, image = my_image)
 
@@ -414,7 +457,7 @@ def homepage():
 
       btn_FAQ_btn.place(x = 96, y = 700)
 
-      onl_con_btn.place(x = 800, y = 600)
+      onl_con_btn.place(x = 800, y = 600, )
 
       mis_btn.place(x = 500, y = 600)
 
